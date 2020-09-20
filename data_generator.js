@@ -7,10 +7,10 @@
 window.streams = {};
 streams.home = [];
 streams.users = {};
-streams.users.noor = [];
 streams.users.razan = [];
-streams.users.duhaa = [];
-streams.users.hamza = [];
+streams.users.rami = [];
+streams.users.samar = [];
+streams.users.yasmeen = [];
 window.users = Object.keys(streams.users);
 
 // utility function for adding tweets to our data structures
@@ -42,8 +42,7 @@ var generateRandomTweet = function(){
   var tweet = {};
   tweet.user = randomElement(users);
   tweet.message = randomMessage();
-  tweet.created_at = new Date(); 
-  
+  tweet.created_at = new Date();
   addTweet(tweet);
 };
 

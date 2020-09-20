@@ -1,3 +1,34 @@
 body{
-	background-color:LightBlue
+ /* background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQOEOstyZpgnBh8aUIEwGo78FfKHzyFn51jKQ&usqp=CAU");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-attachment: fixed;
+
+  color: white;*/
 }
+
+.tweet{
+  text-align: center;
+  border: 5px solid pink;
+  margin: 5px 5px;
+}
+
+#newTweets{
+  display: flex;
+  justify-content: center;
+  
+
+}
+
+form{
+  display:flex;
+  flex-direction: column;
+  justify-content:center;
+  align-items:center;
+}
+
+form input{
+  margin: 10px;
+}
+
+

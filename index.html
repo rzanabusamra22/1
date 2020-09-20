@@ -1,141 +1,88 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <script src="jquery.js"></script>
-    <script src="data_generator.js"></script>
+  <link href="style.css" rel="stylesheet" type="text/css">
+  <script src="jquery.js"></script>
+  <script src="data_generator.js"></script>
   </head>
+
   <body>
+    <div id="newTweets">
+      <input type="button" value="New Tweets" onclick= getNewTweets()>
+    </div>
+  <form>
+    <label for="name">Name</label>
+    <input type="text" id="name" placeholder="enter your name">
+    <label for="message">Message</label>
+    <input type="text" id="message" placeholder="enter your Tweet">
+  </form>
+    <input type="button" value="Twittle" onclick= addNewTweets()>
+  
+
+    <div id="new">
+    </div>
+
+
     <script>
 
-      $(document).ready(function(){
-        var $body = $('body');
-        $body.html('');
+      function addNewTweets(){
+        var name = $("#name");
+        var message = $("#message");
+        if(streams.users[name.val()] === undefined){
+          streams.users[name.val()]=[]
+          }
+        var x = {};
+        x.user = name.val();
+        x.message = message.val()
+        x.created_at = new Date();
+        addTweet(x);
 
+        getNewTweets();
+      }
+
+      /*var name = $("#name");
+      var message = $("#message");
+      if(streams.users[name.val()]===undefined){streams.users[name.val()]=[]}
+      var y = {};
+      y.user = name.val();
+      y.message = message.val();
+      y.created_at = new Date();
+      addTweet(y);
+       getNewTweets()
+    }*/
+
+
+
+    
+      function getNewTweets(){
+        //$(".tweet").remove()
+        //var time = new Date()
         var index = streams.home.length - 1;
         while(index >= 0){
           var tweet = streams.home[index];
           var $tweet = $('<div></div>');
-          $tweet.text('@' + tweet.user + ': ' + tweet.message+" "+tweet.created_at.getHours()+":"+tweet.created_at.getMinutes());
-          $tweet.appendTo($body);
+          $tweet.attr("class","tweet");
+          $tweet.html('@ <span style="color:red" onclick= showUserTweet(this)>' + tweet.user + '</span>: ' + tweet.message + " " +  tweet.created_at.getHours() + ":" + tweet.created_at.getMinutes());
+          $tweet.appendTo("#new");
           index -= 1;
         }
+      }
 
-   
-        var noor=$('<button>Noor Tweets</button>')
-        noor.addClass('noor')
-        noor.appendTo($body)
-
-        noor.on('click',function(){
-          var $body = $('body');
-           $body.html('');
-           var index = streams.users.noor.length - 1;
+      function showUserTweet(user){
+        $(".tweet").remove()
+        var userName = user.innerText;
+        var index = streams.users[userName].length - 1;
         while(index >= 0){
-          var tweet = streams.users.noor[index];
+          var tweet = streams.users[userName][index];
+          console.log()
           var $tweet = $('<div></div>');
-          $tweet.text('@' + tweet.user + ': ' + tweet.message+" "+tweet.created_at.getHours()+":"+tweet.created_at.getMinutes());
-          $tweet.appendTo($body);
+          $tweet.attr("class","tweet");
+          $tweet.html('@ <span style="color:red">' + tweet.user + '</span>: ' + tweet.message + " " +  tweet.created_at.getHours() + ":" + tweet.created_at.getMinutes());
+          $tweet.appendTo("#new");
           index -= 1;
-          }
-        
-
-         var home=$('<button>Home Page</button>') 
-         home.addClass('Home')
-         home.appendTo($body)
-      
-
-         home.on('click',function(){
-          window.history.go(-1);
-
-                           })
-        })
-
-        var razan=$('<button>RazanTweets</button>')
-        razan.addClass('razan')
-        razan.appendTo($body)
-
-        razan.on('click',function(){
-          var $body = $('body');
-           $body.html('');
-           var index = streams.users.razan.length - 1;
-        while(index >= 0){
-          var tweet = streams.users.razan[index];
-          var $tweet = $('<div></div>');
-         $tweet.text('@' + tweet.user + ': ' + tweet.message+" "+tweet.created_at.getHours()+":"+tweet.created_at.getMinutes());
-          $tweet.appendTo($body);
-          index -= 1;
-          }
-           var home=$('<button>Home Page</button>') 
-         home.addClass('Home')
-         home.appendTo($body)
-      
-
-         home.on('click',function(){
-          window.history.go(-1);
-
-                           })
-        })
-
-        var duhaa=$('<button>duhaa Tweets</button>')
-        duhaa.addClass('duhaa')
-        duhaa.appendTo($body)
-
-        duhaa.on('click',function(){
-          var $body = $('body');
-           $body.html('');
-           var index = streams.users.duhaa.length - 1;
-        while(index >= 0){
-          var tweet = streams.users.duhaa[index];
-          var $tweet = $('<div></div>');
-         $tweet.text('@' + tweet.user + ': ' + tweet.message+" "+tweet.created_at.getHours()+":"+tweet.created_at.getMinutes());
-          $tweet.appendTo($body);
-          index -= 1;
-          }
-           var home=$('<button>Home Page</button>') 
-         home.addClass('Home')
-         home.appendTo($body)
-      
-
-         home.on('click',function(){
-          window.history.go(-1);
-
-                           })
-        })
-
-        var hamza=$('<button>hamza Tweets</button>')
-        hamza.addClass('hamza')
-        hamza.appendTo($body)
-
-        hamza.on('click',function(){
-          var $body = $('body');
-           $body.html('');
-           var index = streams.users.hamza.length - 1;
-        while(index >= 0){
-          var tweet = streams.users.hamza[index];
-          var $tweet = $('<div></div>');
-          $tweet.text('@' + tweet.user + ': ' + tweet.message+" "+tweet.created_at.getHours()+":"+tweet.created_at.getMinutes());
-          $tweet.appendTo($body);
-          index -= 1;
-          }
-           var home=$('<button>Home Page</button>') 
-         home.addClass('Home')
-         home.appendTo($body)
-      
-
-         home.on('click',function(){
-          window.history.go(-1);
-
-                           })
-        })
-
-      });
+        }
+    }
 
     </script>
-
- 
-
-
-
   </body>
-
 </html>
